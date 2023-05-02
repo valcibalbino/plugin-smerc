@@ -1,7 +1,12 @@
-    <div class="wrap">
+<?php
+	global $current_user; wp_get_current_user();
+	session_start();
+?>
+	
+	<div class="wrap">
         <h2>Configurações</h2>
         <p class="description"> Está é uma página de configurações do plugin SME</p>
-        <p class="description"><?php echo plugin_dir_path(__FILE__); ?></p>
+        <p class="description">Usuário atual: <?php echo $current_user->display_name; ?></p>
 		<p class="description"><?php echo plugin_dir_url(__FILE__); ?></p>
         <p class="description"><?php echo "<a href='../wp-admin/options-general.php?page=bld_config_page'>xxx</a>"; ?></p>
 		<form action="../wp-admin/options-general.php?page=bld_config_page" method="post" id="bld-admin-form">

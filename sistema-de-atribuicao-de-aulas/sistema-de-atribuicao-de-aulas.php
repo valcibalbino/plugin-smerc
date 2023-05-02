@@ -34,7 +34,7 @@ register_uninstall_hook( __FILE__, 'smerc_unistall_hook' ); // Apagar Tabelas e 
 add_action('admin_menu', 'smerc_register_menus');
 // Menu config plugin
 function smerc_register_menus(){
-    add_menu_page('Configuração', 'Configuração', 'smerc_atribuicao', 'smerc_config_page', 'smerc_render_page');
+    add_menu_page('Configuração', 'Configuração SMERC', 'manage_options', 'smerc_config_page', 'smerc_render_page');
     add_menu_page('Atribuição Aulas', 'Aula Atribuição', 'manage_options', 'smerc_aula_page', 'smerc_aula_page');
     add_menu_page('Atribuição Classes', 'Classe Atribuição', 'manage_options', 'smerc_classe_page', 'smerc_classe_page');
 }
