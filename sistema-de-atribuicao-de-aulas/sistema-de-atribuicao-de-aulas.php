@@ -3,7 +3,7 @@
  * Plugin Name:       Sistema de Atribuição de Aulas - SMERC
  * Plugin URI:        http://191.252.133.116/~pi/plugin
  * Description:       Sistema de Gestão de Atribuição de Aulas permite aos gestores receber e gerenciar informações relativas as demandas de aulas das escolas..
- * Version:           0.1.0
+ * Version:           1.0.0
  * Requires at least: 5.2
  * Requires PHP:      7.4
  * Author:            Equipe Projeto Integrador
