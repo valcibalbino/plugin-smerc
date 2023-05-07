@@ -60,11 +60,6 @@ function exibir_formulario_classe2() {
 				<li role="presentation"><a href="#fim" aria-controls="fim" role="tab" data-toggle="tab">Finalização</a></li>
 			  </ul>
 
-
-
-
-
-
 			  <!-- Tab panes -->
 			  <div class="tab-content">
 
@@ -134,6 +129,59 @@ function exibir_formulario_classe2() {
                                   <input type="radio" id="PEI-EI" name="Educação Infantil" value="PEI-EI">
                                   <label for="PEI-EI">PEI-EI</label>
                                 </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Ensino Fundamental I:</label>
+                                <div class="col-sm-10">
+                                  <input type="radio" id="1º ano" name="classe-ef" value="1º Ano">
+                                  <label for="1º ano">1º Ano</label><br>
+                                  <input type="radio" id="2º ano" name="classe-ef" value="2º Ano">
+                                  <label for="2º ano">2º Ano</label><br>
+                                  <input type="radio" id="3º ano" name="classe-ef" value="3º Ano">
+                                  <label for="3º ano">3º Ano</label><br>
+                                  <input type="radio" id="4º ano" name="classe-ef" value="4º Ano">
+                                  <label for="4º ano">4º Ano</label><br>
+                                  <input type="radio" id="5º ano" name="classe-ef" value="5º Ano">
+                                  <label for="5º ano">5º Ano</label><br>
+                                  <input type="radio" id="Multisseriada" name="classe-ef" value="Multisseriada">
+                                  <label for="Multisseriada">Multisseriada</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">EJA I:</label>
+                                <div class="col-sm-10">
+                                  <input type="radio" id="1º termo" name="classe-eja" value="1º termo">
+                                  <label for="1º termo">1º termo</label><br>
+                                  <input type="radio" id="2º termo" name="classe-eja" value="2º termo">
+                                  <label for="2º termo">2º termo</label><br>
+                                  <input type="radio" id="3º termo" name="classe-eja" value="3º termo">
+                                  <label for="3º termo">3º termo</label><br>
+                                  <input type="radio" id="4º termo" name="classe-eja" value="4º termo">
+                                  <label for="4º termo">4º termo</label><br>
+                                  <input type="radio" id="Multisseriada" name="classe-eja" value="Multisseriada">
+                                  <label for="Multisseriada">Multisseriada</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Assinale a turma a ser atribuida:</label>
+                                <div class="col-sm-10">
+                                <select id="turma" name="turma">
+                                      <option value=""></option>
+                                      <option value="A">A</option>
+                                      <option value="B">B</option>
+                                      <option value="C">C</option>
+                                      <option value="D">D</option>
+                                      <option value="E">E</option>
+                                      <option value="F">F</option>
+                                      <option value="G">G</option>
+                                      <option value="H">H</option>
+                                      <option value="I">I</option>
+                                      <option value="J">J</option>
+                                    </select>
+                                    </div>
                             </div>
 
                             <div class="form-group">
