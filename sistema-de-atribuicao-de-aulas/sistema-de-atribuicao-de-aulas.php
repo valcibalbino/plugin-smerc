@@ -42,10 +42,10 @@ function smerc_render_page(){
     include ( plugin_dir_path( __FILE__ ) . 'includes/smerc-config.php');
 }
 function smerc_aula_page(){
-    include ( plugin_dir_path( __FILE__ ) . 'includes/forms.php');
+    include ( plugin_dir_path( __FILE__ ) . 'includes/form-aula.php');
 }
 function smerc_classe_page(){
-    include ( plugin_dir_path( __FILE__ ) . 'includes/forms.php');
+    include ( plugin_dir_path( __FILE__ ) . 'includes/form-classe.php');
 }
 
 

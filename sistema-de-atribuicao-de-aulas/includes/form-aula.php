@@ -33,5 +33,5 @@ function exibir_formulario_aula() {
     </form>
     <?php
 }
-
+exibir_formulario_aula();
 ?>
