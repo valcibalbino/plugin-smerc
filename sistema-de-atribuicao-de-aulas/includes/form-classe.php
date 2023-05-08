@@ -9,6 +9,12 @@
 // Segurança
 //defined( 'ABSPATH' ) || exit;
 
+// Dados iniciais do usuário
+$aux = wp_get_current_user();
+$_POST['aux'] = $aux->get('user_firstname')." ".$aux->get('user_lastname');
+//=$aux->id;
+
+
 // Função para exibir o formulário
 function exibir_formulario_classe2() {
   wp_enqueue_style( 'bootstrap.min.css', plugins_url( 'css/bootstrap.min.css' , __FILE__ ) );
@@ -71,7 +77,7 @@ function exibir_formulario_classe2() {
                                 <label class="col-sm-2 control-label">Nome do responável pelo preenchimento:</label>
                                 <div class="col-sm-10">
                                     <input type="hidden" name="id_usuario" id="id_usuario" required>
-                                    <input type="text" name='nome' class="form-control" id="nome" placeholder="Nome completo" value="<?php if(isset($_SESSION['nome'])){ echo $_SESSION['nome']; }?>">
+                                    <input type="text" name='nomex' class="form-control" id="nomex"  value="<?php echo $_POST['aux']; ?>">
                                 </div>
                             </div>
 
@@ -86,18 +92,18 @@ function exibir_formulario_classe2() {
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Etapa de Ensino:</label>
                                 <div class="col-sm-10">
-                                  <input type="radio" name="etapa" id="Educação_infantil" required OnChange="etapasmerc('inf')">
+                                  <input type="radio" name="etapa" id="Educação_infantil" required >
                                   <label for="Educação Infantil">Educação infantil</label><br>
-                                  <input type="radio" name="etapa" id="Ensino_Fundamental" required OnChange="etapasmerc('fund1')">
+                                  <input type="radio" name="etapa" id="Ensino_Fundamental" required >
                                   <label for="Ensino Fundamental I">Ensino Fundamental I</label><br>
-                                  <input type="radio" name="etapa" id="EJA I" required OnChange="etapasmerc('eja')">
+                                  <input type="radio" name="etapa" id="EJA I" required >
                                   <label for="EJA I">EJA I</label>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="button" class="btn btn-success">Próximo</button>
+                                <a href="#dados_da_classe" aria-controls="dados_da_classe" role="tab" data-toggle="tab"><button type="button" class="btn btn-success">Próximo</button></a>
                                 </div>
                             </div>
                         </form>
@@ -198,9 +204,9 @@ function exibir_formulario_classe2() {
 
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="button" class="btn btn-success">Anterior</button>
+                                    <a href="#dados_iniciais" aria-controls="home" role="tab" data-toggle="tab"><button type="button" class="btn btn-success">Anterior</button></a>
                                     &nbsp;&nbsp;&nbsp;
-                                    <button type="button" class="btn btn-success">Próximo</button>
+                                    <a href="#periodo_horario" aria-controls="periodo_horario" role="tab" data-toggle="tab"><button type="button" class="btn btn-success">Próximo</button></a>
                                 </div>
                             </div>
                         </form>
@@ -258,9 +264,9 @@ function exibir_formulario_classe2() {
 
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="button" class="btn btn-success">Anterior</button>
+                                    <a href="#dados_da_classe" aria-controls="dados_da_classe" role="tab" data-toggle="tab"><button type="button" class="btn btn-success">Anterior</button></a>
                                     &nbsp;&nbsp;&nbsp;
-                                    <button type="button" class="btn btn-success">Próximo</button>
+                                    <a href="#situacao_classe" aria-controls="situacao_classe" role="tab" data-toggle="tab"><button type="button" class="btn btn-success">Próximo</button></a>
                                 </div>
                             </div>
                         </form>
@@ -340,9 +346,9 @@ function exibir_formulario_classe2() {
 
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="button" class="btn btn-success">Anterior</button>
+                                    <a href="#periodo_horario" aria-controls="periodo_horario" role="tab" data-toggle="tab"><button type="button" class="btn btn-success">Anterior</button></a>
                                     &nbsp;&nbsp;&nbsp;
-                                    <button type="button" class="btn btn-success">Próximo</button>
+                                    <a href="#htpc" aria-controls="htpc" role="tab" data-toggle="tab"><button type="button" class="btn btn-success">Próximo</button></a>
                                 </div>
                             </div>
                         </form>
@@ -376,9 +382,9 @@ function exibir_formulario_classe2() {
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="button" class="btn btn-success">Anterior</button>
+                                    <a href="#situacao_classe" aria-controls="situacao_classe" role="tab" data-toggle="tab"><button type="button" class="btn btn-success">Anterior</button></a>
                                     &nbsp;&nbsp;&nbsp;
-                                    <button type="button" class="btn btn-success">Próximo</button>
+                                    <a href="#fim" aria-controls="fim" role="tab" data-toggle="tab"><button type="button" class="btn btn-success">Próximo</button></a>
                                 </div>
                             </div>
                         </form>
@@ -394,7 +400,7 @@ function exibir_formulario_classe2() {
 
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="button" class="btn btn-success">Enviar</button>
+                                    <a href="#htpc" aria-controls="htpc" role="tab" data-toggle="tab"><button type="button" class="btn btn-success">Enviar</button></a>
                                 </div>
                             </div>
 				  </div>
