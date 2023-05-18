@@ -20,6 +20,7 @@ function exibir_formulario_classe2() {
   wp_enqueue_style( 'bootstrap.min.css', plugins_url( 'css/bootstrap.min.css' , __FILE__ ) );
   wp_enqueue_style( 'style.css', plugins_url( 'css/style.css' , __FILE__ ) );
   wp_enqueue_script( 'bootstrap.min.js', plugins_url( 'js/bootstrap.min.js' , __FILE__ ) );
+  wp_enqueue_script( 'script.js', plugins_url( 'js/script.js' , __FILE__ ) );
 
     // Verifica se o formulário foi enviado
     if ( isset( $_POST['submit'] ) ) {
@@ -31,7 +32,7 @@ function exibir_formulario_classe2() {
     ?>
 
 
-<div class="container theme-showcase" role="main">
+<div class="container theme-showcase" role="main" >
 			<div class="page-header">
 				<h1>Atribuir Classe</h1>
 			</div>			
@@ -92,11 +93,11 @@ function exibir_formulario_classe2() {
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Etapa de Ensino:</label>
                                 <div class="col-sm-10">
-                                  <input type="radio" name="etapa" id="Educação_infantil" required >
+                                  <input type="radio" name="etapa" id="Educação_infantil" required  Onclick="smercDiv(['eefi','eejai'],['einf'])">
                                   <label for="Educação Infantil">Educação infantil</label><br>
-                                  <input type="radio" name="etapa" id="Ensino_Fundamental" required >
+                                  <input type="radio" name="etapa" id="Ensino_Fundamental" required  Onclick="smercDiv(['einf','eejai'],['eefi'])">
                                   <label for="Ensino Fundamental I">Ensino Fundamental I</label><br>
-                                  <input type="radio" name="etapa" id="EJA I" required >
+                                  <input type="radio" name="etapa" id="EJA I" required  Onclick="smercDiv(['einf','eefi'],['eejai'])">
                                   <label for="EJA I">EJA I</label>
                                 </div>
                             </div>
@@ -115,7 +116,7 @@ function exibir_formulario_classe2() {
 					<div style="padding-top:20px;">
 					 <form class="form-horizontal"  action="" method="POST">
 
-                            <div class="form-group">
+                            <div class="form-group" id="einf">
                                 <label class="col-sm-2 control-label">Educação Infantil:</label>
                                 <div class="col-sm-10">
                                   <input type="radio" id="berçario-I" name="Educação Infantil" value="Berçario I">
@@ -137,7 +138,7 @@ function exibir_formulario_classe2() {
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" id="eefi">
                                 <label class="col-sm-2 control-label">Ensino Fundamental I:</label>
                                 <div class="col-sm-10">
                                   <input type="radio" id="1º ano" name="classe-ef" value="1º Ano">
@@ -155,7 +156,7 @@ function exibir_formulario_classe2() {
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" id="eejai">
                                 <label class="col-sm-2 control-label">EJA I:</label>
                                 <div class="col-sm-10">
                                   <input type="radio" id="1º termo" name="classe-eja" value="1º termo">
@@ -221,16 +222,16 @@ function exibir_formulario_classe2() {
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Escolha o período das Aulas:</label>
                                 <div class="col-sm-10">
-                                  <input type="radio" id="manha" name="periodo" value="manha">
+                                  <input type="radio" id="manha" name="periodo" value="manha" Onclick="smercDiv(['ptarde','pnoite'],['pmanha'])">
                                   <label for="manha">Manhã</label><br>
-                                  <input type="radio" id="tarde" name="periodo" value="tarde">
+                                  <input type="radio" id="tarde" name="periodo" value="tarde" Onclick="smercDiv(['pmanha','pnoite'],['ptarde'])">
                                   <label for="tarde">Tarde</label><br>
-                                  <input type="radio" id="noite" name="periodo" value="noite">
+                                  <input type="radio" id="noite" name="periodo" value="noite" Onclick="smercDiv(['ptarde','pmanha'],['pnoite'])">
                                   <label for="noite">Noite</label>
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" id="pmanha">
                                 <label class="col-sm-2 control-label">Selecione o horário da manhã:</label>
                                 <div class="col-sm-10">
                                   <input type="radio" id="horario1" name="horario" value="7h00-11h00">
@@ -244,7 +245,7 @@ function exibir_formulario_classe2() {
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" id="ptarde">
                                 <label class="col-sm-2 control-label">Selecione o horário da tarde:</label>
                                 <div class="col-sm-10">
                                   <input type="radio" id="horario1" name="horariotarde" value="13h00-17h00">
@@ -254,7 +255,7 @@ function exibir_formulario_classe2() {
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" id="pnoite">
                                 <label class="col-sm-2 control-label">Selecione o horário da noite:</label>
                                 <div class="col-sm-10">
                                   <input type="radio" id="horario1" name="horarionoite" value="19h00-21h40">
@@ -280,16 +281,20 @@ function exibir_formulario_classe2() {
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Assinale a situação da classe:</label>
                                 <div class="col-sm-10">
-                                    <select id="situação" name="situação">
+                                    <select id="situação" name="situação" onchange="smercDiv(['substituição', 'livre'], [this.value])">
+                                      <option value=""></option>
                                       <option value="livre">Livre</option>
                                       <option value="substituição">Substituição</option>
                                     </select>
                                 </div>
                             </div>
+
+                            <div  id="livre">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Livre - Escolha o motivo:</label>
                                 <div class="col-sm-10">
                                   <select id="motivo" name="motivo">
+                                    <option value=""></option>
                                     <option value="aposentadoria">Aposentadoria</option>
                                     <option value="exoneracao">Exoneração</option>
                                     <option value="outro">Outro</option>
@@ -303,7 +308,9 @@ function exibir_formulario_classe2() {
                                   <input type="text" class="form-control" id="professor-titular" name="professor-titular">
                                 </div>
                             </div>
+                            </div>
 
+                            <div id="substituição">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Nome do(a) professor(a) Quadro 1</label>
                                 <div class="col-sm-10">
@@ -343,6 +350,7 @@ function exibir_formulario_classe2() {
                                   <input type="text" class="form-control" id="motivo-contratado" name="motivo-contratado">
                                   </div>
                             </div>
+                            </div>
 
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
@@ -361,23 +369,29 @@ function exibir_formulario_classe2() {
 					 <form class="form-horizontal"  action="" method="POST">
                             <div class="form-group">
                                 <div class="col-sm-10">
-                                  <label for="dias_htpc">Assinale os dias da semana com HTPC:</label><br>
-                                  <table class="table table-striped table-bordered table-condensed table-hover table-center">
-                                    <tr>
-                                      <td class = "text-center">segunda-feira</td>
-                                      <td class = "text-center">terça-feira</td>
-                                      <td class = "text-center">quarta-feira</td>
-                                      <td class = "text-center">quinta-feira</td>
-                                      <td class = "text-center">sexta-feira</td>
-                                    </tr>
-                                    <tr>
-                                      <td class = "text-center"><input type="checkbox" id="segunda-feira" name="segunda-feira"></td>
-                                      <td class = "text-center"><input type="checkbox" id="terça-feira" name="terça-feira"></td>
-                                      <td class = "text-center"><input type="checkbox" id="quarta-feira" name="quarta-feira"></td>
-                                      <td class = "text-center"><input type="checkbox" id="quinta-feira" name="quinta-feira"></td>
-                                      <td class = "text-center"><input type="checkbox" id="sexta-feira" name="sexta-feira"></td>
-                                    </tr>
-                                  </table>
+                                  <label for="dias_htpc">Selecione o dia da semana e horário de HTPC:</label><br>
+                                  <select name="select">
+                                    <option value="valor0" selected></option>
+                                    <option value="segunda-feira">segunda-feira</option>
+                                    <option value="terça-feira">terça-feira</option>
+                                    <option value="quarta-feira">quarta-feira</option>
+                                    <option value="quinta-feira">quinta-feira</option>
+                                    <option value="sexta-feira">sexta-feira</option>
+                                  </select>
+                                  Início <input type="time" name="hora01" value="18:00"> e términio <input type="time" name="hora02" value="18:50">
+                                </div>
+                                <div class="col-sm-10">
+                                  <br>
+                                  <label for="dias_htpc">Se houver, selecione o segundo dia da semana e horário de HTPC:</label><br>
+                                  <select name="select">
+                                    <option value="valor0" selected></option>
+                                    <option value="segunda-feira">segunda-feira</option>
+                                    <option value="terça-feira">terça-feira</option>
+                                    <option value="quarta-feira">quarta-feira</option>
+                                    <option value="quinta-feira">quinta-feira</option>
+                                    <option value="sexta-feira">sexta-feira</option>
+                                  </select>
+                                  Início <input type="time" name="hora01" value="18:00"> e términio <input type="time" name="hora02" value="18:50">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -408,7 +422,6 @@ function exibir_formulario_classe2() {
 
 			</div>
 		</div>
-
 
 
 
