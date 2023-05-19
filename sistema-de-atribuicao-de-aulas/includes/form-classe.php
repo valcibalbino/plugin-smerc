@@ -77,6 +77,7 @@ function exibir_formulario_classe2() {
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Nome do responável pelo preenchimento:</label>
                                 <div class="col-sm-10">
+                                    <input type="text" id="cliente" name="cliente" autocomplete="off">
                                     <input type="hidden" name="id_usuario" id="id_usuario" required>
                                     <input type="text" name='nomex' class="form-control" id="nomex"  value="<?php echo $_POST['aux']; ?>">
                                 </div>
@@ -289,13 +290,14 @@ function exibir_formulario_classe2() {
                                 </div>
                             </div>
 
-                            <div  id="livre">
+                          <div  id="livre">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Livre - Escolha o motivo:</label>
                                 <div class="col-sm-10">
                                   <select id="motivo" name="motivo">
                                     <option value=""></option>
                                     <option value="aposentadoria">Aposentadoria</option>
+                                    <option value="desistência">Desistência</option>
                                     <option value="exoneracao">Exoneração</option>
                                     <option value="outro">Outro</option>
                                   </select>
@@ -303,15 +305,15 @@ function exibir_formulario_classe2() {
                             </div>
                             
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Livre - Nome do professor Titular da classe:</label>
+                                <label class="col-sm-2 control-label">Nome do professor Titular da classe:</label>
                                 <div class="col-sm-10">
                                   <input type="text" class="form-control" id="professor-titular" name="professor-titular">
                                 </div>
                             </div>
-                            </div>
+                          </div>
 
-                            <div id="substituição">
-                            <div class="form-group">
+                          <div id="substituição">
+                            <div class="form-group"><hr>
                                 <label class="col-sm-2 control-label">Nome do(a) professor(a) Quadro 1</label>
                                 <div class="col-sm-10">
                                   <input type="text" class="form-control" id="nome-quadro-1" name="nome-quadro-1">
@@ -321,35 +323,87 @@ function exibir_formulario_classe2() {
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Motivo de afastamento do Quadro 1</label>
                                 <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="motivo-quadro-1" name="motivo-quadro-1">
-                                  </div>
+                                <select id="motivoq1" name="motivoq1" onchange="smercMotivo([this.value], 'motivo-quadro-1')">
+                                    <option value=""></option>
+                                    <option value="Função de Coordenador(a) Pedagógico">Função de Coordenador(a) Pedagógico</option>
+                                    <option value="Função de Diretor(a) Substituto(a)">Função de Diretor(a) Substituto(a)</option>
+                                    <option value="Função de Vice Diretor(a)">Função de Vice Diretor(a)</option>
+                                    <option value="Função de Professor(a) Coordenador(a)">Função de Professor(a) Coordenador(a)</option>
+                                    <option value="Licença saúde">Licença saúde</option>
+                                    <option value="Licença gestante">Licença gestante</option>
+                                    <option value="Licença sem vencimento">Licença sem vencimento</option>
+                                    <option value="Licença prêmio">Licença prêmio</option>
+                                    <option value="Férias">Férias</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                                <div id="motivo-quadro-1">
+                                <input type="text" class="form-control" id="motivo-quadro-1" name="motivo-quadro-1" placeholder="Digite o motivo do afastamento">
+                                </div>
+                                <br>
+                                Início: <input type="date" id="data-inicio-q1" name="data-inicio-q1"> - Término: <input type="date" id="data-fim-q1" name="data-fim-q1">
+                                </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group"><hr>
                                 <label class="col-sm-2 control-label">Nome do(a) professor(a) Quadro 2</label>
                                 <div class="col-sm-10">
                                   <input type="text" class="form-control" id="nome-quadro-2" name="nome-quadro-2">
                                   </div>
                             </div>
+
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Motivo de afastamento do Quadro 2</label>
                                 <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="motivo-quadro-1" name="motivo-quadro-1">
+                                <select id="motivoq2" name="motivoq2" onchange="smercMotivo([this.value], 'motivo-quadro-2')">
+                                    <option value=""></option>
+                                    <option value="Função de Coordenador(a) Pedagógico">Função de Coordenador(a) Pedagógico</option>
+                                    <option value="Função de Diretor(a) Substituto(a)">Função de Diretor(a) Substituto(a)</option>
+                                    <option value="Função de Vice Diretor(a)">Função de Vice Diretor(a)</option>
+                                    <option value="Função de Professor(a) Coordenador(a)">Função de Professor(a) Coordenador(a)</option>
+                                    <option value="Licença saúde">Licença saúde</option>
+                                    <option value="Licença gestante">Licença gestante</option>
+                                    <option value="Licença sem vencimento">Licença sem vencimento</option>
+                                    <option value="Licença prêmio">Licença prêmio</option>
+                                    <option value="Férias">Férias</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                                <div id="motivo-quadro-2">
+                                <input type="text" class="form-control" id="motivo-quadro-2" name="motivo-quadro-2" placeholder="Digite o motivo do afastamento">
+                                </div>
+                                <br>
+                                Início: <input type="date" id="data-inicio-q2" name="data-inicio-q2"> - Término: <input type="date" id="data-fim-q2" name="data-fim-q2">
                                   </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group"><hr>
                                 <label class="col-sm-2 control-label">Nome do(a) professor(a) Contratado(a)</label>
                                 <div class="col-sm-10">
                                   <input type="text" class="form-control" id="nome-contratado" name="nome-contratado">
                                 </div>
                             </div>
+
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Motivo de afastamento do Contratado(a)</label>
+                                <label class="col-sm-2 control-label">Motivo de afastamento do(a) Contratado(a)</label>
                                 <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="motivo-contratado" name="motivo-contratado">
+                                <select id="motivocontratado" name="motivocontratado" onchange="smercMotivo([this.value], 'motivo-contratado')">
+                                    <option value=""></option>
+                                    <option value="Função de Coordenador(a) Pedagógico">Função de Coordenador(a) Pedagógico</option>
+                                    <option value="Função de Diretor(a) Substituto(a)">Função de Diretor(a) Substituto(a)</option>
+                                    <option value="Função de Vice Diretor(a)">Função de Vice Diretor(a)</option>
+                                    <option value="Função de Professor(a) Coordenador(a)">Função de Professor(a) Coordenador(a)</option>
+                                    <option value="Licença saúde">Licença saúde</option>
+                                    <option value="Licença gestante">Licença gestante</option>
+                                    <option value="Licença sem vencimento">Licença sem vencimento</option>
+                                    <option value="Licença prêmio">Licença prêmio</option>
+                                    <option value="Férias">Férias</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                                <div id="motivo-contratado">
+                                <input type="text" class="form-control" id="motivo-c" name="motivo-c" placeholder="Digite o motivo do afastamento">
+                                </div>
+                                <br>
+                                Início: <input type="date" id="data-inicio-c" name="data-inicio-c"> - Término: <input type="date" id="data-fim-c" name="data-fim-c">
                                   </div>
-                            </div>
                             </div>
 
                             <div class="form-group">
@@ -360,6 +414,7 @@ function exibir_formulario_classe2() {
                                 </div>
                             </div>
                         </form>
+                      </div>
 					</div>
 				</div>
 
@@ -378,8 +433,11 @@ function exibir_formulario_classe2() {
                                     <option value="quinta-feira">quinta-feira</option>
                                     <option value="sexta-feira">sexta-feira</option>
                                   </select>
-                                  Início <input type="time" name="hora01" value="18:00"> e términio <input type="time" name="hora02" value="18:50">
+                                  Início <input type="time" name="hora01" value="18:00"> e término <input type="time" name="hora02" value="18:50">
                                 </div>
+                                </div>
+
+                                <div class="form-group">
                                 <div class="col-sm-10">
                                   <br>
                                   <label for="dias_htpc">Se houver, selecione o segundo dia da semana e horário de HTPC:</label><br>
@@ -391,9 +449,26 @@ function exibir_formulario_classe2() {
                                     <option value="quinta-feira">quinta-feira</option>
                                     <option value="sexta-feira">sexta-feira</option>
                                   </select>
-                                  Início <input type="time" name="hora01" value="18:00"> e términio <input type="time" name="hora02" value="18:50">
+                                  Início <input type="time" name="hora01" value="18:00"> e término <input type="time" name="hora02" value="18:50">
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                  <br>
+                                  <label for="dias_htpc">Se houver, selecione o terceiro dia da semana e horário de HTPC:</label><br>
+                                  <select name="select">
+                                    <option value="valor0" selected></option>
+                                    <option value="segunda-feira">segunda-feira</option>
+                                    <option value="terça-feira">terça-feira</option>
+                                    <option value="quarta-feira">quarta-feira</option>
+                                    <option value="quinta-feira">quinta-feira</option>
+                                    <option value="sexta-feira">sexta-feira</option>
+                                  </select>
+                                  Início <input type="time" name="hora01" value="18:00"> e término <input type="time" name="hora02" value="18:50">
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <a href="#situacao_classe" aria-controls="situacao_classe" role="tab" data-toggle="tab"><button type="button" class="btn btn-success">Anterior</button></a>
@@ -410,6 +485,8 @@ function exibir_formulario_classe2() {
 				<div role="tabpanel" class="tab-pane" id="fim">
 					<div style="padding-top:20px;">
           <label for="fim">Confira todas as informações:</label>
+          <br>
+          <div id="confirma-nome">Teste</div>
 
 
                             <div class="form-group">
@@ -428,8 +505,8 @@ function exibir_formulario_classe2() {
 
 
 
-
-
+    <!-- Div necessária para manter integridade das funções -->
+    <div id="oculto"></div>
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->

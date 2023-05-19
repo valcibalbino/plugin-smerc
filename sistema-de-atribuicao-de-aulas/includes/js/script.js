@@ -7,9 +7,19 @@ function smercDiv(auxOcultar, auxExibir) {
     for (let i in auxExibir) {
         document.getElementById(auxExibir[i]).style.display = "block";
     }
+    document.querySelector('#confirma-nome').textContent = "Mudou o texto!";
 }
 
 $(window).on("load", function(){
     // página totalmente carregada (DOM, imagens etc.)
-    smercDiv(['einf','eefi','eejai','pmanha','ptarde','pnoite','livre','substituição'],['xyzz']);
+    smercDiv(['einf','eefi','eejai','pmanha','ptarde','pnoite','livre','substituição','motivo-quadro-1','motivo-quadro-2','motivo-contratado'],['oculto']);
  });
+
+ function smercMotivo(auxvalor, auxdiv) {
+    if (auxvalor == 'Outro') {
+        smercDiv(['oculto'], [auxdiv]);
+    } else {
+        smercDiv([auxdiv], ['oculto']);
+    }
+ }
+ 
