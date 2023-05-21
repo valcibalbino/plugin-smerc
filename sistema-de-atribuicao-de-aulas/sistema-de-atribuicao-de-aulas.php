@@ -36,7 +36,7 @@ add_action('admin_menu', 'smerc_register_menus');
 function smerc_register_menus(){
     add_menu_page('Configuração', 'Configuração SMERC', 'manage_options', 'smerc_config_page', 'smerc_render_page');
     add_menu_page('Atribuição Aulas', 'Aula Atribuição', 'manage_options', 'smerc_aula_page', 'smerc_aula_page');
-    add_menu_page('Atribuição Classes', 'Classe Atribuição', 'manage_options', 'smerc_classe_page', 'smerc_classe_page');
+    add_menu_page('Atribuição Classes', 'Classe Atribuição', 'read', 'smerc_classe_page', 'smerc_classe_page');
 }
 function smerc_render_page(){
     include ( plugin_dir_path( __FILE__ ) . 'includes/smerc-config.php');
@@ -59,7 +59,8 @@ function exibir_formulario_classe(){
 add_shortcode( 'exibir_formulario_aula', 'exibir_formulario_aula' );
 add_shortcode( 'exibir_formulario_classe', 'exibir_formulario_classe' );
 
-
+//Redirecionar página do menu principal na abertura
+add_filter('login_redirect', 'redirect_to_specific_page');
 
 
 

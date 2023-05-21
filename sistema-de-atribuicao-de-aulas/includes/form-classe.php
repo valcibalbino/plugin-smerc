@@ -12,6 +12,7 @@
 // Dados iniciais do usuário
 $aux = wp_get_current_user();
 $_POST['aux'] = $aux->get('user_firstname')." ".$aux->get('user_lastname');
+$_POST['userId'] = get_current_user_id();
 //=$aux->id;
 
 
@@ -66,7 +67,7 @@ function exibir_formulario_classe2() {
 				<li role="presentation"><a href="#periodo_horario" aria-controls="periodo_horario" role="tab" data-toggle="tab">Período e Horário</a></li>
 				<li role="presentation"><a href="#situacao_classe" aria-controls="situacao_classe" role="tab" data-toggle="tab">Situação da classe</a></li>
 				<li role="presentation"><a href="#htpc" aria-controls="htpc" role="tab" data-toggle="tab">Dias e horários HTPC</a></li>
-				<li role="presentation"><a href="#fim" aria-controls="fim" role="tab" data-toggle="tab">Finalização</a></li>
+				<li role="presentation"><a href="#fim" aria-controls="fim" role="tab" data-toggle="tab"  Onclick="resumo();">Finalização</a></li>
 			  </ul>
 
 			  <!-- Tab panes -->
@@ -79,8 +80,8 @@ function exibir_formulario_classe2() {
                             <div class="row form-group">
                                 <label class="col-sm-2 control-label">Nome do resposável pelo preenchimento:</label>
                                 <div class="col-sm-10">
-                                    <input type="hidden" name="id_usuario" id="id_usuario" required>
-                                    <input type="text" name='nome' class="form-control" id="nome"  value="<?php echo $_POST['aux']; ?>">
+                                    <input type="hidden" name="id_usuario" id="id_usuario" value="<?php echo $_POST['userId']; ?>">
+                                    <input readonly type="text" name='nome' class="form-control" id="nome"  value="<?php echo $_POST['aux']; ?>">
                                 </div>
                             </div>
 
@@ -88,7 +89,7 @@ function exibir_formulario_classe2() {
                                 <label class="col-sm-2 control-label">Unidade de Ensino:</label>
                                 <div class="col-sm-10">
                                     <input type="hidden" name="id_escolar" id="nome" required>
-                                    <input type="text" name='nome_unidade' class="form-control" id="nome_unidade" placeholder="Nome da Unidade de Ensino" value="<?php // if(isset($_SESSION['cpf'])){ echo $_SESSION['cpf']; } ?>">
+                                    <input readonly type="text" name='nome_unidade' class="form-control" id="nome_unidade" placeholder="Nome da Unidade de Ensino" value="">
                                 </div>
                             </div>
 
@@ -420,9 +421,9 @@ function exibir_formulario_classe2() {
 							</div>
                             <div class="row form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <a href="#periodo_horario" aria-controls="periodo_horario" role="tab" data-toggle="tab"><button type="button" class="btn btn-primary">Anterior</button></a>
+                                    <a href="#periodo_horario" aria-controls="periodo_horario" role="tab" data-toggle="tab" Onclick="resumo();"><button type="button" class="btn btn-primary">Anterior</button></a>
                                     &nbsp;&nbsp;&nbsp;
-                                    <a href="#htpc" aria-controls="htpc" role="tab" data-toggle="tab"><button type="button" class="btn btn-primary">Próximo</button></a>
+                                    <a href="#htpc" aria-controls="htpc" role="tab" data-toggle="tab" Onclick="resumo();"><button type="button" class="btn btn-primary">Próximo</button></a>
                                 </div>
                             </div>
 
@@ -487,7 +488,7 @@ function exibir_formulario_classe2() {
 
                             <div class="row form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <a href="#situacao_classe" aria-controls="situacao_classe" role="tab" data-toggle="tab"><button type="button" class="btn btn-primary">Anterior</button></a>
+                                    <a href="#situacao_classe" aria-controls="situacao_classe" role="tab" data-toggle="tab" Onclick="resumo();"><button type="button" class="btn btn-primary">Anterior</button></a>
                                     &nbsp;&nbsp;&nbsp;
                                     <a href="#fim" aria-controls="fim" role="tab" data-toggle="tab" Onclick="resumo();"><button type="button" class="btn btn-primary">Próximo</button></a>
                                 </div>
@@ -542,4 +543,5 @@ function exibir_formulario_classe2() {
     <?php
 }
 exibir_formulario_classe2();
+
 ?>

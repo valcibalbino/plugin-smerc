@@ -125,6 +125,13 @@ function smerc_unistall_hook() {
 }
 
 
+// redireciona para página 
+function redirect_to_specific_page() {
+    $redirect_to = admin_url('admin.php?page=smerc_classe_page');
+    return $redirect_to;
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////
 class SMERC_Classe {
 	// Atributos privados
@@ -152,7 +159,8 @@ class SMERC_Escola {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-class SMERC_Professor {
+class SMERC_User {
+
 	// Atributos privados
 
 	public function setProfessor() {
@@ -161,6 +169,10 @@ class SMERC_Professor {
 
 	public function getProfessor() {
 		// Acessar dados
+	}
+
+	public function getEscola() {
+
 	}
 }
 
