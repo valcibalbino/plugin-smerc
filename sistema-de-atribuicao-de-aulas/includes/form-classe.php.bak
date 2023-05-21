@@ -438,7 +438,7 @@ function exibir_formulario_classe2() {
                                 <div class="col-sm-10">
                                   <label for="dias_htpc">Selecione o dia da semana e horário de HTPC:</label><br>
                                   <select id="dia_htpc" name="dia_htpc">
-                                    <option value="" selected></option>
+                                    <option value="valor0" selected></option>
                                     <option value="segunda-feira">segunda-feira</option>
                                     <option value="terça-feira">terça-feira</option>
                                     <option value="quarta-feira">quarta-feira</option>
@@ -455,7 +455,7 @@ function exibir_formulario_classe2() {
                                   <br>
                                   <label for="dia_htpc2">Se houver, selecione o segundo dia da semana e horário de HTPC:</label><br>
                                   <select id="dia_htpc2" name="dia_htpc2">
-                                    <option value="" selected></option>
+                                    <option value="valor0" selected></option>
                                     <option value="segunda-feira">segunda-feira</option>
                                     <option value="terça-feira">terça-feira</option>
                                     <option value="quarta-feira">quarta-feira</option>
@@ -473,7 +473,7 @@ function exibir_formulario_classe2() {
                                   <br>
                                   <label for="dia_htpc3">Se houver, selecione o terceiro dia da semana e horário de HTPC:</label><br>
                                   <select id="dia_htpc3" name="dia_htpc3">
-                                    <option value="" selected></option>
+                                    <option value="valor0" selected></option>
                                     <option value="segunda-feira">segunda-feira</option>
                                     <option value="terça-feira">terça-feira</option>
                                     <option value="quarta-feira">quarta-feira</option>
@@ -502,11 +502,6 @@ function exibir_formulario_classe2() {
           <label for="fim">Confira todas as informações:</label>
           <br>
           <div id="summary"></div>
-          <div class="row">
-          <br>
-          <textarea id="observacao" name="observacao" rows="5" cols="33"  placeholder="Se necessário, acrescente mais informações aqui..."></textarea>
-          <br><br>  
-        </div>
 
 
 
