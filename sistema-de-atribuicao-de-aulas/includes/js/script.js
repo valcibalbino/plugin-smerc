@@ -15,6 +15,7 @@ $(window).on("load", function(){
     smercDiv(['einf','eefi','eejai','pmanha','ptarde','pnoite','livre','substituição','div-motivo-quadro-1','div-motivo-quadro-2','div-motivo-contratado','mais_htpc','mais_htpc2'],['oculto']);
  });
 
+
  function smercMotivo(auxvalor, auxdiv) {
     if (auxvalor == 'Outro') {
         smercDiv(['oculto'], [auxdiv]);
@@ -174,14 +175,6 @@ $(window).on("load", function(){
         summary += "<b>Início:</b> " + hora05 + "\n";
         summary += "<b>Término:</b> " + hora06 + "\n";        
     }
-
-
-
-
-
-
-
-
 
    // Exibe o resumo na tela
    document.getElementById('summary').innerHTML = summary.replace(/\n/g, '<br>');
