@@ -1,6 +1,4 @@
-.tabela-htpc {
-    border: 1;
-    background-color:azure;
-    
 
-}
+#einf, #eefi, #eejai, #pmanha, #ptarde, #pnoite, #Livre, #Substituição, #div_prof_02, #div_prof_03, #div_prof_04, #div_prof_05, #div_motivo_01, #div_motivo_02, #div_motivo_03, #div_motivo_04, #div_motivo_05, #mais_htpc, #mais_htpc2 {
+    display:none;
+  }

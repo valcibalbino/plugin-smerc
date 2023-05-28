@@ -12,8 +12,8 @@
         <form action="../wp-admin/options-general.php?page=bld_config_page" method="post" id="bld-admin-form">
 			<table>
 			<tr>
-				<td class = "text-center">Status do Sistema:</td> 
-				<td class = "text-center"> <input type="radio" id="classico" name="bld-botao" value="classico">
+				<td>Status do Sistema:</td> 
+				<td> <input type="radio" id="classico" name="bld-botao" value="classico">
 				<label for="classico">Ativado</label><br>
 				<input type="radio" id="Imagem" name="bld-botao" value="Imagem">
 				<label for="Imagem">Desativado</label></td>

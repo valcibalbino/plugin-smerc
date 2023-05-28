@@ -20,7 +20,7 @@ defined('ABSPATH') || exit;
 
 // Incluir funções
 include( plugin_dir_path( __FILE__ ) . 'includes/functions.php'); //funções PHP
-include( plugin_dir_path( __FILE__ ) . 'includes/forms.php'); //formulários PHP
+//include( plugin_dir_path( __FILE__ ) . 'includes/forms.php'); //formulários PHP
 
 // Registar Plugin para correr na ativação/desativação/desinstalação
 register_activation_hook( __FILE__, 'smerc_compativel' ); // Verificar compatibilidade
@@ -35,17 +35,22 @@ add_action('admin_menu', 'smerc_register_menus');
 // Menu config plugin
 function smerc_register_menus(){
     add_menu_page('Configuração', 'Configuração SMERC', 'manage_options', 'smerc_config_page', 'smerc_render_page');
-    add_menu_page('Atribuição Aulas', 'Aula Atribuição', 'manage_options', 'smerc_aula_page', 'smerc_aula_page');
     add_menu_page('Atribuição Classes', 'Classe Atribuição', 'read', 'smerc_classe_page', 'smerc_classe_page');
+    add_menu_page('Lista Classes', 'Classe Lista', 'read', 'smerc_lista_page', 'smerc_lista_page');
+    add_menu_page('Classes form', 'Classes form', 'read', 'smerc_form_page', 'smerc_form_page');
 }
 function smerc_render_page(){
     include ( plugin_dir_path( __FILE__ ) . 'includes/smerc-config.php');
 }
-function smerc_aula_page(){
-    include ( plugin_dir_path( __FILE__ ) . 'includes/form-aula.php');
-}
+
 function smerc_classe_page(){
     include ( plugin_dir_path( __FILE__ ) . 'includes/form-classe.php');
+}
+function smerc_lista_page(){
+    include ( plugin_dir_path( __FILE__ ) . 'includes/form-lista.php');
+}
+function smerc_form_page(){
+    include ( plugin_dir_path( __FILE__ ) . 'includes/forms.php');
 }
 
 
@@ -61,6 +66,85 @@ add_shortcode( 'exibir_formulario_classe', 'exibir_formulario_classe' );
 
 //Redirecionar página do menu principal na abertura
 add_filter('login_redirect', 'redirect_to_specific_page');
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Função para adicionar as páginas ao painel
+function adicionar_paginas_coloridas() {
+    // Adicionar página com fundo azul
+    add_menu_page(
+        null, // Título da página
+        'SMERC', // Texto do menu
+        'read', // Capacidade necessária para visualizar o item de menu
+        'pagina-classe', // Slug do menu
+        null, // Função de callback para exibir o conteúdo da página
+        'dashicons-admin-site', // Ícone do menu (opcional)
+        2 // Posição do menu
+    );
+
+    add_submenu_page(
+        'pagina-classe', // Slug do menu pai
+        'Atribuir classe', // Título da página
+        'Atribuir classe', // Texto do menu
+        'read', // Capacidade necessária para visualizar o item de menu
+        'pagina-classe', // Slug do menu
+        'exibir_pagina_classe', // Função de callback para exibir o conteúdo da página
+    );
+
+    // Adicionar página com fundo amarelo
+    add_submenu_page(
+        'pagina-classe', // Slug do menu pai
+        'Listar classes', // Título da página
+        'Listar classes', // Texto do menu
+        'read', // Capacidade necessária para visualizar o item de menu
+        'pagina-lista', // Slug do menu
+        'exibir_pagina_lista' // Função de callback para exibir o conteúdo da página
+    );
+
+    add_submenu_page(
+        null, // Slug do menu pai (null para não exibir no menu)
+        'Link Verde', // Título da página
+        'Link Verde', // Texto do menu
+        'read', // Capacidade necessária para visualizar o item de menu
+        'pagina-aux', // Slug do menu
+        'exibir_pagina_aux' // Função de callback para exibir o conteúdo da página
+    );
+}
+
+// Função de callback para exibir o conteúdo da Atribuir Classe
+function exibir_pagina_classe() {
+    include_once(plugin_dir_path( __FILE__ ) . 'includes/form-classe.php');
+}
+
+// Função de callback para exibir o conteúdo da página amarela
+function exibir_pagina_lista() {
+    include_once(plugin_dir_path( __FILE__ ) . 'includes/form-lista.php');
+}
+
+// Função de callback para exibir o conteúdo da página amarela
+function exibir_pagina_aux() {
+    include_once(plugin_dir_path( __FILE__ ) . 'includes/visualizar.php');
+}
+
+// Ação para adicionar as páginas ao painel do WordPress
+add_action('admin_menu', 'adicionar_paginas_coloridas');
+
+
+
+
+
+
+
 
 
 

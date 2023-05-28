@@ -7,12 +7,11 @@ function smercDiv(auxOcultar, auxExibir) {
     for (let i in auxExibir) {
         document.getElementById(auxExibir[i]).style.display = "block";
     }
-    document.querySelector('#confirma-nome').textContent = "Mudou o texto!";
+    //document.querySelector('#confirma-nome').textContent = "Mudou o texto!";
 }
 
 $(window).on("load", function(){
     // página totalmente carregada (DOM, imagens etc.)
-    smercDiv(['einf','eefi','eejai','pmanha','ptarde','pnoite','livre','substituição','div-motivo-quadro-1','div-motivo-quadro-2','div-motivo-contratado','mais_htpc','mais_htpc2'],['oculto']);
  });
 
 
@@ -32,12 +31,25 @@ $(window).on("load", function(){
     }
  }
 
+
+ function format_data(valor){
+    if(valor=="") {
+        return "";
+    } else {
+        const dataCriada = new Date(valor);
+        const dataFormatada = dataCriada.toLocaleDateString('pt-BR', {
+        timeZone: 'UTC',
+        });
+        return dataFormatada;
+    }
+  }
+
  function resumo() {
 
    // Obtém os valores dos campos do formulário
-   // id_usuario
+   //var id_usuario = document.getElementById('id_usuario').value;
+   //var id_escola = document.getElementById('id_escola').value;
    var nome = document.getElementById('nome').value;
-   // id_escolar
    var unidade = document.getElementById('nome_unidade').value;
    var etapa = smerc_radio("etapa"); //document.querySelector('input[name="etapa"]:checked').value;
    
@@ -60,31 +72,66 @@ $(window).on("load", function(){
    var situacao = document.getElementById("situa").value;
 
    // Se as aulas forem LIVRES
-   if(situacao == "livre"){
-    var motivo = document.getElementById("motivolivre").value;
-    var professortitular = document.getElementById('professor-titular').value;
+   if(situacao == "Livre"){
+    var nome_professor_01 = document.getElementById('nome_professor_livre').value;
+    var motivo_01 = document.getElementById('motivo_livre').value;
    }
 
    // Se as aulas forem SUBSTITUIçÂO
-   if(situacao == "substituição"){
-    // Quadro 1
-    var motivoq1 = document.getElementById("motivoq1").value;
-    if(motivoq1 == "Outro") { motivoq1 = document.getElementById('motivo-quadro-1').value; }
-    var professorq1 = document.getElementById('nome-quadro-1').value;
-    var datainicioq1 = document.getElementById('data-inicio-q1').value;
-    var datafimq1 = document.getElementById('data-fim-q1').value;
-    // Quadro 2
-    var motivoq2 = document.getElementById("motivoq2").value;
-    if(motivoq2 == "Outro") { motivoq2 = document.getElementById('motivo-quadro-2').value; }
-    var professorq2 = document.getElementById('nome-quadro-2').value;
-    var datainicioq2 = document.getElementById('data-inicio-q2').value;
-    var datafimq2 = document.getElementById('data-fim-q2').value;
-    // Contratado
-    var motivoc = document.getElementById("motivocontratado").value;
-    if(motivoc == "Outro") { motivoc = document.getElementById('motivo-contratado').value; }
-    var professorc = document.getElementById('nome-contratado').value;
-    var datainicioc = document.getElementById('data-inicio-c').value;
-    var datafimc = document.getElementById('data-fim-c').value;
+   if(situacao == "Substituição"){
+    // Professor 1
+    var nome_professor_01 = document.getElementById("nome_professor_01").value; //nome
+    var professor_01 = document.getElementById('professor_01').value; // categoria
+    var motivo_01 = document.getElementById("motivo_01").value; // motivo select
+    var detalhe_motivo_01 = ""; // variavel de controle zerar
+    if(motivo_01 == "Outro") { detalhe_motivo_01 = document.getElementById('detalhe_motivo_01').value; } // motivo texto
+    var data_inicio_01 = document.getElementById('data_inicio_01').value;
+    var data_final_01 = document.getElementById('data_final_01').value;
+
+    // variáveis de controle
+    var p2 = false, p3 = false, p4 = false, p5 = false;
+    var detalhe_motivo_02 = "", detalhe_motivo_03 = "", detalhe_motivo_04 = "", detalhe_motivo_05 = ""; 
+
+    // Professor 2    
+    var nome_professor_02 = document.getElementById("nome_professor_02").value; //nome
+    if (nome_professor_02.length > 3) {
+        p2 = true;
+        var professor_02 = document.getElementById('professor_02').value; // categoria
+        var motivo_02 = document.getElementById("motivo_02").value; // motivo select
+        if(motivo_02 == "Outro") { detalhe_motivo_02 = document.getElementById('detalhe_motivo_02').value; } // motivo texto
+        var data_inicio_02 = document.getElementById('data_inicio_02').value;
+        var data_final_02 = document.getElementById('data_final_02').value;
+    }
+    // Professor 3
+    var nome_professor_03 = document.getElementById("nome_professor_03").value; //nome
+    if (nome_professor_03.length > 3) {
+        p3 = true;
+        var professor_03 = document.getElementById('professor_03').value; // categoria
+        var motivo_03 = document.getElementById("motivo_03").value; // motivo select
+        if(motivo_03 == "Outro") { detalhe_motivo_03 = document.getElementById('detalhe_motivo_03').value; } // motivo texto
+        var data_inicio_03 = document.getElementById('data_inicio_03').value;
+        var data_final_03 = document.getElementById('data_final_03').value;
+    }
+    // Professor 4
+    var nome_professor_04 = document.getElementById("nome_professor_04").value; //nome
+    if (nome_professor_04.length > 3) {
+        p4 = true;
+        var professor_04 = document.getElementById('professor_04').value; // categoria
+        var motivo_04 = document.getElementById("motivo_04").value; // motivo select
+        if(motivo_04 == "Outro") { detalhe_motivo_04 = document.getElementById('detalhe_motivo_04').value; } // motivo texto
+        var data_inicio_04 = document.getElementById('data_inicio_04').value;
+        var data_final_04 = document.getElementById('data_final_04').value;
+    }
+    // Professor 5
+    var nome_professor_05 = document.getElementById("nome_professor_05").value; //nome
+    if (nome_professor_05.length > 3) {
+        p5 = true;
+        var professor_05 = document.getElementById('professor_05').value; // categoria
+        var motivo_05 = document.getElementById("motivo_05").value; // motivo select
+        if(motivo_05 == "Outro") { detalhe_motivo_05 = document.getElementById('detalhe_motivo_05').value; } // motivo texto
+        var data_inicio_05 = document.getElementById('data_inicio_05').value;
+        var data_final_05 = document.getElementById('data_final_05').value;
+    }
    }
 
 
@@ -112,11 +159,11 @@ $(window).on("load", function(){
     }
    }
 
+   var observacao = document.getElementById('observacao').value;
 
 
 
-
-   // Escreva Resumo das informações
+   ///// Escreva Resumo das informações /////
    var summary = "\n";
    summary += "<b>Nome do responsável:</b> " + nome + "\n";
    summary += "<b>Unidade escolar:</b> " + unidade + "\n";
@@ -129,30 +176,55 @@ $(window).on("load", function(){
    summary += "<b>Situação da classe:</b> " + situacao + "\n";
 
    // Se as aulas forem LIVRES
-   if(situacao == "livre"){
-    summary += "<b>Motivo:</b> " + motivo + "\n";
-    summary += "<b>Professor titular:</b> " + professortitular + "\n";
+   if(situacao == "Livre"){
+    summary += "<b>Professor Titular:</b> " + nome_professor_01 + "\n";
+    summary += "<b>Motivo do afastamento:</b> " + motivo_01 + "\n";
    }
 
    // Se as aulas forem SUBSTITUIÇÃO
-   if(situacao == "substituição"){
+   if(situacao == "Substituição"){
     summary += "<hr>";
-    summary += "<b>Professor Quadro 1:</b> " + professorq1 + "\n";
-    summary += "<b>Motivo Quadro 1:</b> " + motivoq1 + "\n";
-    summary += "<b>Data início:</b> " + datainicioq1 + "\n";
-    summary += "<b>Data término:</b> " + datafimq1 + "\n";
-    summary += "<hr>";
-    summary += "<b>Professor Quadro 2:</b> " + professorq2 + "\n";
-    summary += "<b>Motivo Quadro 2:</b> " + motivoq2 + "\n";
-    summary += "<b>Data início:</b> " + datainicioq2 + "\n";
-    summary += "<b>Data término:</b> " + datafimq2 + "\n";
-    summary += "<hr>";
-    summary += "<b>Professor Contratado:</b> " + professorc + "\n";
-    summary += "<b>Motivo Contratado:</b> " + motivoc + "\n";
-    summary += "<b>Data início:</b> " + datainicioc + "\n";
-    summary += "<b>Data término:</b> " + datafimc + "\n";
+    summary += "<b>Professor 1:</b> " + nome_professor_01 + "\n";
+    summary += "<b>Categoria:</b> " + professor_01 + "\n";
+    summary += "<b>Motivo do afastamento:</b> " + motivo_01 + " - " + detalhe_motivo_01 + "\n";
+    summary += "<b>Data início:</b> " + format_data(data_inicio_01) + "\n";
+    summary += "<b>Data término:</b> " + format_data(data_final_01) + "\n";
+    if (p2) {
+        summary += "<hr>";
+        summary += "<b>Professor 2:</b> " + nome_professor_02 + "\n";
+        summary += "<b>Categoria:</b> " + professor_02 + "\n";
+        summary += "<b>Motivo do afastamento:</b> " + motivo_02 + " - " + detalhe_motivo_02 + "\n";
+        summary += "<b>Data início:</b> " + format_data(data_inicio_02) + "\n";
+        summary += "<b>Data término:</b> " + format_data(data_final_02) + "\n";
+    }
+    if (p3) {
+        summary += "<hr>";
+        summary += "<b>Professor 3:</b> " + nome_professor_03 + "\n";
+        summary += "<b>Categoria:</b> " + professor_03 + "\n";
+        summary += "<b>Motivo do afastamento:</b> " + motivo_03 + " - " + detalhe_motivo_03 + "\n";
+        summary += "<b>Data início:</b> " + format_data(data_inicio_03) + "\n";
+        summary += "<b>Data término:</b> " + format_data(data_final_03) + "\n";
+    }
+    if (p4) {
+        summary += "<hr>";
+        summary += "<b>Professor 3:</b> " + nome_professor_04 + "\n";
+        summary += "<b>Categoria:</b> " + professor_04 + "\n";
+        summary += "<b>Motivo do afastamento:</b> " + motivo_04 + " - " + detalhe_motivo_04 + "\n";
+        summary += "<b>Data início:</b> " + format_data(data_inicio_04) + "\n";
+        summary += "<b>Data término:</b> " + format_data(data_final_04) + "\n";
+    }
+    if (p5) {
+        summary += "<hr>";
+        summary += "<b>Professor 3:</b> " + nome_professor_05 + "\n";
+        summary += "<b>Categoria:</b> " + professor_05 + "\n";
+        summary += "<b>Motivo do afastamento:</b> " + motivo_05 + " - " + detalhe_motivo_05 + "\n";
+        summary += "<b>Data início:</b> " + format_data(data_inicio_05) + "\n";
+        summary += "<b>Data término:</b> " + format_data(data_final_05) + "\n";
+    }
+ 
    }
 
+    // reuniões pedagógicas HTPC
     summary += "<hr>";
     summary += "<b>Dias e horários de reuniões pedagógicas - HTPC</b> " + "\n";
     if(dias == 0){

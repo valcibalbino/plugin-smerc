@@ -121,6 +121,20 @@ function smerc_activation_hook() {
 
 }
 
+// Gravar Classes no banco de dados
+function smerc_set_classe($dados, $formato){
+    global $wpdb; // Obtém a instância do objeto $wpdb
+    $table_name = $wpdb->prefix . 'smerc_classes'; // Obtém o nome completo da tabela
+	
+	// Insere os dados na tabela utilizando a função insert do $wpdb
+	$wpdb->insert($table_name, $dados, $formato);
+
+	// Retorna o ID do registro inserido ou false em caso de erro
+	return $wpdb->insert_id;
+
+}
+
+
 
 // Desativação do Plugin
 function smerc_deactivate_hook() {
@@ -143,6 +157,28 @@ function smerc_unistall_hook() {
 function redirect_to_specific_page() {
     $redirect_to = admin_url('admin.php?page=smerc_classe_page');
     return $redirect_to;
+}
+
+// Formatação: cor
+function cor($aux){
+	$aux = strtolower($aux);
+	if ($aux == "submetido" ) {
+		return "secondary"; // Cinza
+	}
+	else if ($aux == "validado" ) {
+		return "success"; // Verde
+	}
+	else if ($aux == "devolvido" ) {
+		return "danger"; // Vermelho
+	}
+	else if ($aux == "publicado" ) {
+		return "warning"; // Amarelo
+	}
+	else if ($aux == "atribuído" ) {
+		return "light"; // light
+	} else {
+		return "light";
+	}
 }
 
 
